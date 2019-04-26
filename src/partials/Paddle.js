@@ -26,9 +26,15 @@ export default class Paddle {
 
     }//end of constructor
     up() {
+      //get the amx number 
+      //either 0 or the y position minus speed
+      //current y position of the paddle-10px every time the game loop is running
         this.y = Math.max(0, this.y - this.speed);
     }
+
     down() {
+        //get the amx number 
+        // either the height of the board minus the height 
         this.y = Math.min(this.boardHeight-this.height,this.y+ this.speed);
     }
     render (svg){

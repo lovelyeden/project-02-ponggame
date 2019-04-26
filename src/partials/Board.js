@@ -1,4 +1,4 @@
-import { SVG_NS } from "../settings";
+    import { SVG_NS } from "../settings";
 
 
 export default class Board {
@@ -8,7 +8,7 @@ export default class Board {
     }
     render(svg) {
       let rect = document.createElementNS(SVG_NS, 'rect');
-      rect.setAttributeNS(null,'fill', '#353535');
+      rect.setAttributeNS(null,'fill', 'black');
       rect.setAttributeNS(null,'width', this.width);
       rect.setAttributeNS(null,'height', this.height);
 
