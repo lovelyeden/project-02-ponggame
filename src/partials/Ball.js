@@ -6,6 +6,8 @@ export default class Ball {
       this.boardWidth = boardWidth;
       this.boardHeight = boardHeight;
       this.direction = 1;
+      this.ping = new Audio ('public/sounds/pong-01.wav');
+
       this.reset();
     }//end of constructor
 
@@ -13,8 +15,8 @@ export default class Ball {
         this.x = this.boardWidth / 2;
         this.y = this.boardHeight / 2;
 
-    this.vy = 0;
-    while(this.vy === 0){
+        this.vy = 0;
+        while(this.vy === 0){
         this.vy = Math.floor(Math.random() * 10 - 5);
         }
         this.vx = this.direction * (6 - Math.abs(this.vy));
@@ -25,12 +27,13 @@ export default class Ball {
         const hitRight = this.x+this.radius>=this.boardWidth;
         const hitTop = this.y -this.radius <= 0;
         const hitBottom = this.y + this.radius >= this.boardHeight;
+        
         if(hitLeft || hitRight ){//left or right
             this.vx = - this.vx;
-            //how to flip the x vector
+       
         }else if(hitTop || hitBottom){//top or bottom
             this.vy = -this.vy;
-            // how to flip the y vector
+           
         }
     }//end of wall collision
     paddleCollision(player1, player2) {
@@ -45,6 +48,7 @@ export default class Ball {
               (this.y >= topY && this.y <= bottomY)
           ){
             this .vx = -this.vx;
+            this.ping.play();
           }
 
         } else {
@@ -62,7 +66,15 @@ export default class Ball {
           }
         }
       }// paddle collision
-        render(svg,player1, player2){
+
+      //add a goal method
+      goal (player){
+          player.score++;
+          this.reset();
+          console.log(player.score);
+
+      }
+        render(svg, player1, player2){
 
         this.x +=this.vx;
         this.y +=this.vy;
@@ -77,5 +89,15 @@ export default class Ball {
         circle.setAttributeNS(null,'fill', 'white');
 
         svg.appendChild(circle);
+
+        const rightGoal = this.x + this.radius >= this.boardWidth;
+        const leftGoal = this.x - this.radius <= 0;
+        if(rightGoal){
+            this.goal(player1);
+            this.direction = 1;
+        } else if (leftGoal){
+            this.goal(player2);
+            this.direction = -1;
+        }
     }
   }//end of Ball Class
