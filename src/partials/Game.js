@@ -38,9 +38,25 @@ export default class Game {
   
     this.ball = new Ball (8, this.width, this.height);
 
+    document.addEventListener('keydown', (event) => {
+  
+      switch(event.key){
+        case KEYS.spaceBar:
+        this.pause =!this.pause;
+        break;
+      }
+      console.log(this.pause);
+    });
+
 }//end of constructor
 
   render() {
+    if (this.pause){
+      return;
+    }
+
+
+
    
     this.gameElement.innerHTML= '';
 
@@ -53,8 +69,9 @@ export default class Game {
     this.board.render(svg);
     this.player1.render(svg);
     this.player2.render(svg);
-    this.ball.render(svg);
-    this.ball.render(svg,this.player1,this.player2);
+    // this.ball.render(svg);
+
+    this.ball.render(svg,this.player1, this.player2);
 
   }
 }
