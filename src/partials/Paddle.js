@@ -8,9 +8,9 @@ export default class Paddle {
       this.height = height;
       this.x = x;
       this.y = y;
-      this.speed = 10;
+      this.speed = 20;
       this.score = 0;
-    //   this.color = color
+   
 
       document.addEventListener("keydown", event => {
         switch (event.key) {
@@ -31,7 +31,6 @@ export default class Paddle {
       //current y position of the paddle-10px every time the game loop is running
         this.y = Math.max(0, this.y - this.speed);
     }
-
     down() {
         //get the amx number 
         // either the height of the board minus the height 
@@ -43,15 +42,17 @@ export default class Paddle {
       let topY = y;
       let bottomY = y + height;
       return [leftX, rightX, topY, bottomY];
+
     
     }
     render (svg){
       let rect = document.createElementNS(SVG_NS, 'rect');
-      rect.setAttributeNS(null,'fill', '#ffff00');
+      rect.setAttributeNS(null,'fill', 'green');
       rect.setAttributeNS(null,'width', this.width);
       rect.setAttributeNS(null,'height', this.height);
       rect.setAttributeNS(null,'x', this.x);
       rect.setAttributeNS(null,'y', this.y);
+
   
     svg.appendChild(rect);
     

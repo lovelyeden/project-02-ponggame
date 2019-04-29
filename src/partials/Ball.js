@@ -1,13 +1,14 @@
 import {SVG_NS} from '../settings';
 
 export default class Ball {
-    constructor(radius, boardWidth, boardHeight) {
+    constructor(radius, boardWidth, boardHeight ) {
       this.radius = radius;
       this.boardWidth = boardWidth;
       this.boardHeight = boardHeight;
-      this.direction = 1;
-      this.ping = new Audio ('public/sounds/pong-01.wav');
-
+      this.direction = 10;
+      this.ping = new Audio('public/sounds/pong-01.wav');
+     
+    
       this.reset();
     }//end of constructor
 
@@ -47,8 +48,11 @@ export default class Ball {
               (this.x + this.radius <= rightX) &&
               (this.y >= topY && this.y <= bottomY)
           ){
-            this .vx = -this.vx;
+            this.vx = -this.vx;
             this.ping.play();
+  
+        
+            
           }
 
         } else {
@@ -62,6 +66,8 @@ export default class Ball {
             (this.y >= topY && this.y <= bottomY)
           ){
             this.vx = -this.vx;
+            this.ping.play();
+        
 
           }
         }
