@@ -31,3 +31,7 @@ A basic pong game using SVGs.
 * Use of functions and effectively organize code
 * Use of consistent, descriptive variable and function names
 * Use effective ofcontrol flow (loops, conditionals, etc.)
+* When to use "this" in the script. 
+* Constructor - when to use 
+* Apply the camelcase naming 
+
